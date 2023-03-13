@@ -80,9 +80,9 @@ async def async_callback_generator(
     try:
         yielded = next(gen)
         while True:
-            logger.debug("action:", yielded)
+            logger.debug("action: %s", yielded)
             to_send = await callback(yielded)
-            logger.debug("result:", to_send)
+            logger.debug("result: %s", to_send)
             yielded = gen.send(to_send)
     except StopIteration as e:
         return e.value
@@ -97,9 +97,9 @@ def sync_callback_generator(
     try:
         yielded = next(gen)
         while True:
-            logger.debug("action:", yielded)
+            logger.debug("action: %s", yielded)
             to_send = callback(yielded)
-            logger.debug("result:", to_send)
+            logger.debug("result: %s", to_send)
             yielded = gen.send(to_send)
     except StopIteration as e:
         return e.value

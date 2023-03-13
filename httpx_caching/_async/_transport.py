@@ -43,7 +43,6 @@ class AsyncCachingTransport(httpx.AsyncBaseTransport):
         self,
         request: httpx.Request,
     ) -> httpx.Response:
-
         caching_protocol = CachingPolicy(
             request=request,
             cache_etags=self.cache_etags,
@@ -121,7 +120,7 @@ class AsyncCachingTransport(httpx.AsyncBaseTransport):
         response.stream = wrapped_stream
 
         async def callback(response_body: bytes):
-            logger.debug("saving to cache:", key)
+            logger.debug("saving to cache: %s", key)
             await self.cache.aset(key, response, vary_header_values, response_body)
 
         response.stream.callback = callback

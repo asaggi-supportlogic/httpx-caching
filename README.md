@@ -22,7 +22,7 @@ Project goals:
 
 Limitations:
 * Currently only has in-memory cache storage (async redis would be nice!)
-* Test suite was taken wholesale from CacheControl, so still uses a test server and mocking rather than taking advantage of the sans-io implementation. 
+* Test suite was taken wholesale from CacheControl, so still uses a test server and mocking rather than taking advantage of the sans-io implementation.
 
 **Usage:**
 
@@ -37,11 +37,16 @@ client = CachingClient(client)
 
 async def run_example():
     await client.get("http://example.com")
-    
+
 loop = asyncio.get_event_loop()
 loop.run_until_complete(run_example())
 ```
 
+Or with Redis as cache backend:
+
+```python
+client = CachingClient(client, cache=AsyncRedisCache())
+```
 
 **Documentation:**
 

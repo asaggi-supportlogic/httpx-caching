@@ -54,10 +54,11 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        "httpx==0.22.*",
-        "msgpack",  
+        "httpx>=0.22.0,<0.24.0",
+        "msgpack",
         "anyio",
         "multimethod",
+        "redis",
     ],
     extras_require={},
     classifiers=[
@@ -72,6 +73,7 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3 :: Only",
     ],
 )

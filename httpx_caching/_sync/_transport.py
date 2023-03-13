@@ -43,7 +43,6 @@ class SyncCachingTransport(httpx.BaseTransport):
         self,
         request: httpx.Request,
     ) -> httpx.Response:
-
         caching_protocol = CachingPolicy(
             request=request,
             cache_etags=self.cache_etags,
@@ -119,7 +118,7 @@ class SyncCachingTransport(httpx.BaseTransport):
         response.stream = wrapped_stream
 
         def callback(response_body: bytes):
-            logger.debug("saving to cache:", key)
+            logger.debug("saving to cache: %s", key)
             self.cache.set(key, response, vary_header_values, response_body)
 
         response.stream.callback = callback
